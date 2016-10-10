@@ -1,0 +1,50 @@
+div.site-branding__name a{
+  color: orange;
+  font-size: 2rem;
+}
+
+#page-wrapper li.menu-item a.is-active{
+  background-color: orange;
+  color: white;
+}
+
+ul.clearfix.menu li.menu-item a{
+  color: white;
+  background-color: orange;
+}
+
+#header{
+  background-color: white;
+  background-image: none;
+  /* background: none; */
+}
+
+.path-frontpage #content .node--view-mode-teaser h2 a{
+  color: orange;
+  font-family: Georgia;
+  font-size: 2rem;
+}
+
+.sidebar .block{
+  background-color: white;
+  border-color: white;
+}
+
+.drupal8{
+  background-color: red;
+}
+
+.colonne_gauche{
+  width: 30%;
+  float: left;
+}
+
+.colonne_droite{
+  width: 70%;
+  float: right;
+}
+
+.external-link{
+  background-image:url(../images/external-link.gif);
+  background-repeat:no-repeat;
+}

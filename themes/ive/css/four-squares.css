@@ -1,0 +1,6 @@
+div.contentsquare1, div.contentsquare2, div.contentsquare3, div.contentsquare4{
+  width: 50%;
+  height: 50%;
+  float: left;
+  border-style: solid;
+}
