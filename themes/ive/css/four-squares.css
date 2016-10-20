@@ -1,6 +1,8 @@
-div.contentsquare1, div.contentsquare2, div.contentsquare3, div.contentsquare4{
-  width: 50%;
-  height: 50%;
-  float: left;
-  border-style: solid;
+div.contentsquare{
+  /*width:48%; height:48%; margin:4px; border:1px solid black; float: left;*/
+  width:200px; height:200px; margin:4px; border:1px solid black; float: left;
+}
+
+.clear{
+  clear:both;
 }

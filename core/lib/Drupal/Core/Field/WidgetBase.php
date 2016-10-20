@@ -353,7 +353,7 @@ abstract class WidgetBase extends PluginSettingsBase implements WidgetInterface 
       // Account for drag-and-drop reordering if needed.
       if (!$this->handlesMultipleValues()) {
         // Remove the 'value' of the 'add more' button.
-        unset($values['add_more']);
+        //unset($values['add_more']);
 
         // The original delta, before drag-and-drop reordering, is needed to
         // route errors to the correct form element.

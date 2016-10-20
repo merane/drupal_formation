@@ -110,6 +110,6 @@ tabs:
 jcarousel:
   version: VERSION
   js:
-    vendor/jquery.jcarousel.js: {}
+    vendor/jcarousel/jquery.jcarousel.js: {}
   dependencies:
-    - core/jquery.ui.tabs
+    - core/jquery
