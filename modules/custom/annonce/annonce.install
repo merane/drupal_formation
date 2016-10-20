@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ *   Hello module install/schema hooks.
+ */
+
+use Drupal\Core\Database\Database;
+
+function annonce_schema(){
+    $schema['annonce_history'] = array(
+        'description' => 'Stores annonce viewed by user',
+        'fields' => array(
+            'hid' => array(
+                'description' => 'Primary Key: Unique history ID.',
+                'type'        => 'serial',
+                'unsigned'    => TRUE,
+                'not null'    => TRUE,
+            ),
+            'aid' => array(
+                'description' => 'Annonce ID.',
+                'type'        => 'int',
+                'unsigned'    => TRUE,
+                'not null'    => TRUE,
+            ),
+            'uid' => array(
+                'description' => 'User ID.',
+                'type'        => 'int',
+                'unsigned'    => TRUE,
+                'not null'    => TRUE,
+            ),
+            'update_time' => array(
+                'description' => 'Timestamp of annonce viewed by user.',
+                'type'        => 'int',
+                'unsigned'    => TRUE,
+                'not null'    => TRUE,
+            ),
+        ),
+        'primary key' => array('hid'),
+        'indexes' => array('aid' => array('aid')),
+    );
+    return $schema;
+}

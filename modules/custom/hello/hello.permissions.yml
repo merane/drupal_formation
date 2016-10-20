@@ -1,0 +1,9 @@
+access_hello:
+  title: 'Access hello'
+  description: 'Access permission for hello module'
+  restrict access: 'true'
+
+administer_hello:
+  title: 'Administer hello'
+  description: 'Access permission for hello module'
+  restrict access: 'true'

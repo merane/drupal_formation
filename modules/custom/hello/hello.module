@@ -1,0 +1,141 @@
+<?php
+
+use Drupal\Core\Database\Database;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_help().
+ */
+function hello_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+    switch ($route_name) {
+        // Main module help for the hello module.
+        case 'help.page.hello':
+            return '<p>' . t('Hello ! This is the help page.') . '</p>';
+
+        // Help for another path in the block module.
+        case 'hello.admin_display':
+            return '<p>' . t('Hello ! This is the help page.') . '</p>';
+    }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function hello_cron() {
+    drupal_set_message("Mon message", "error");
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function hello_user_login($account) {
+    //\Drupal::currentUser()->getAccountName()
+    //dpm($account);
+    //kint($account);
+    drupal_set_message(t("Welcome Dear @name", array('@name' => $account->getAccountName())), "status");
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+/*
+function hello_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+    if ($entity instanceof \Drupal\node\NodeInterface) {
+        $database = \Drupal::database();
+
+        $nid = $database->insert('hello_node_history')
+            ->fields(array(
+                'nid' => $entity->id(),
+                'update_time' => time(),
+                'uid' => \Drupal::currentUser()->id()
+            ))
+            ->execute();
+    }
+}*/
+
+function hello_node_update($node) {
+    $database = \Drupal::database();
+
+    $nid = $database->insert('hello_node_history')
+        ->fields(array(
+            'nid' => $node->id(),
+            'update_time' => time(),
+            'uid' => \Drupal::currentUser()->id()
+        ))
+        ->execute();
+}
+
+/**
+ * Implements hook_preprocess_block
+ * @param $variables
+ */
+function hello_preprocess_block(&$variables) {
+
+    $variables['attributes']['class'][] = 'hello_block_'.\Drupal::config('hello.config')->get('color');
+}
+
+/**
+ * Implements hook_page_attachments()
+ */
+function hello_page_attachments(array &$page){
+    $page['#attached']['library'][] = 'hello/hello_style';
+}
+
+/**
+ * Implements hook_theme()
+ */
+function hello_theme($existing, $type, $theme, $path){
+    return array(
+        'hello-node-history' => array(
+            'template' => 'hello-node-history',
+            'variables' => array('node' => NULL, 'count' => NULL),
+        )
+    );
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function hello_form_alter(&$form, FormStateInterface $form_state, $form_id){
+    if($form_id == 'contact_message_feedback_form') {
+        $form['phone'] = array(
+            '#type' => 'tel',
+            '#title' => t('Phone'),
+            '#weight' => -1,
+        );
+        //$form['phone']['#weight'] = -1;
+
+        $form['actions']['submit']['#value'] = t('Send message now');
+
+        $form['subject']['#access'] = FALSE;
+        //$form['subject'] = NULL;
+        //unset($form['subject']);
+        //$form_state['values']['message'] = 'HELLO !!!!!!!';
+        //kint($form_state->getValues());
+        //array_unshift($form['actions']['submit']['#submit'], 'hello_contact_submit');
+        //kint($form);
+    }
+}
+
+/*function hello_contact_submit(array &$form, FormStateInterface $form_state){
+    kint($form['#validate']);
+    kint($form_state->getValue('phone'));
+    kint($form_state->getValue('message'));
+
+    // Ligne 356 à dé-commenter dans C:\xampp\htdocs\developpementd8\core\lib\Drupal\Core\Field\WidgetBase.php
+    $form_state->setValue('message', $form_state->getValue('message') . $form_state->getValue('phone'));
+
+}*/
+
+/**
+ * Implements hook_mail().
+ */
+/**
+ * Implements hook_mail_alter().
+ */
+function hello_mail_alter(&$message){
+    //echo "<pre>"; print_r($message['params']); echo "</pre>";
+    kint($message['params']['contact_message']->get('phone'));
+    $message['body'][] = $message['params']['contact_message'];
+
+}

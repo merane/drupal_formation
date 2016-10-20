@@ -1,0 +1,69 @@
+hello.hello:
+  path: '/hello/{param}'
+  defaults:
+    _title: 'Hello'
+    _controller: '\Drupal\hello\Controller\HelloController::content'
+    param: ''
+  requirements:
+    _access: 'TRUE'
+
+hello.nodes_list:
+  path: '/hello/nodes-list/{param}'
+  defaults:
+    _title: 'Nodes list'
+    _controller: '\Drupal\hello\Controller\NodesListController::content'
+    param: ''
+  requirements:
+    _access: 'TRUE'
+
+hello.calculator:
+  path: '/hello/calculator'
+  defaults:
+    _title: 'Calculator'
+    _form: '\Drupal\hello\Form\HelloCalculatorForm'
+  requirements:
+    _permission: 'access_hello'
+
+hello.block_colors:
+  path: '/admin/appearance/block-colors'
+  defaults:
+    _title: 'Block colors'
+    _form: '\Drupal\hello\Form\HelloBlockColorsForm'
+  requirements:
+    _permission: 'administer_hello'
+
+hello.calculator_result:
+  path: '/hello/calculator-result/{value1}/{value2}/{operation}/{result}'
+  defaults:
+    _title: 'Calculator Result'
+    _controller: '\Drupal\hello\Controller\CalculatorController::content'
+    value1: 0
+    value2: 0
+    operation: +
+    result: 0
+  requirements:
+    _access: 'TRUE'
+
+hello.update_history:
+  path: '/node/{node}/update-history'
+  defaults:
+    _title: 'Update history'
+    _controller: '\Drupal\hello\Controller\UpdateHistoryController::content'
+  requirements:
+    _access: 'TRUE'
+
+hello.hello_rss:
+  path: '/hello-rss'
+  defaults:
+    _title: 'Hello RSS'
+    _controller: '\Drupal\hello\Controller\HelloRssController::content'
+  requirements:
+    _access: 'TRUE'
+
+hello.access:
+  path: '/hello-access'
+  defaults:
+   _title: 'Hello access'
+   _controller: '\Drupal\hello\Controller\HelloAccessController::content'
+  requirements:
+   _access_hello: '5'
