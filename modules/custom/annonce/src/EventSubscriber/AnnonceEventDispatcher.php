@@ -33,12 +33,11 @@ class AnnonceEventDispatcher implements EventSubscriberInterface {
    * {@inheritdoc}
    */
   static function getSubscribedEvents() {
-    $events[KernelEvents::REQUEST][] = array('displayMessage');
+    $events[KernelEvents::REQUEST][] = array('displayMessage',1000);
     return $events;
   }
 
   function displayMessage(){
-      drupal_set_message(t('Hello ' . $this->current_user->getAccountName()));
       if($this->current_route_match->getCurrentRouteMatch()->getRouteName() == 'entity.annonce.canonical'){
           drupal_set_message(t('Entité annonce'));
           if($this->current_route_match->getRawParameter('annonce') != NULL){

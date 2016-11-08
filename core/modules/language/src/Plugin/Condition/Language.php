@@ -86,6 +86,7 @@ class Language extends ConditionPluginBase implements ContainerFactoryPluginInte
         '#default_value' => $this->configuration['langcodes'],
       );
     }
+
     return parent::buildConfigurationForm($form, $form_state);
   }
 

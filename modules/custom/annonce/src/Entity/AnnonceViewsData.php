@@ -23,6 +23,16 @@ class AnnonceViewsData extends EntityViewsData implements EntityViewsDataInterfa
       'help' => t('The annonce entity ID.'),
     );
 
+    $data['annonce_history']['table']['join']['annonce'] = array(
+        'left_field' => 'id',
+        'field' => 'aid',
+    );
+
+    $data['annonce_history']['table']['join']['users_field_data'] = array(
+      'left_field' => 'uid',
+      'field' => 'uid',
+    );
+
     // Add annonce_history table in base
     $data['annonce_history']['table']['base'] = array(
       'field' => 'hid',
@@ -80,6 +90,17 @@ class AnnonceViewsData extends EntityViewsData implements EntityViewsDataInterfa
           // ID of argument handler plugin to use.
           'id' => 'numeric',
       ),
+
+        'relationship' => array(
+            // Views name of the table to join to for the relationship.
+            'base' => 'annonce',
+            // Database field name in the other table to join on.
+            'base field' => 'id',
+            // ID of relationship handler plugin to use.
+            'id' => 'standard',
+            // Default label for relationship in the UI.
+            'label' => t('Relationship between Annonce history and Annonce'),
+        ),
     );
 
     // Add the uid annonce_history field
@@ -106,6 +127,17 @@ class AnnonceViewsData extends EntityViewsData implements EntityViewsDataInterfa
           // ID of argument handler plugin to use.
           'id' => 'numeric',
       ),
+
+        'relationship' => array(
+            // Views name of the table to join to for the relationship.
+            'base' => 'users_field_data',
+            // Database field name in the other table to join on.
+            'base field' => 'uid',
+            // ID of relationship handler plugin to use.
+            'id' => 'standard',
+            // Default label for relationship in the UI.
+            'label' => t('Relationship between Annonce history and Users field data'),
+        ),
     );
 
     // Add the update_time annonce_history field
@@ -128,6 +160,7 @@ class AnnonceViewsData extends EntityViewsData implements EntityViewsDataInterfa
           'id' => 'date',
       ),
     );
+
 
     return $data;
   }

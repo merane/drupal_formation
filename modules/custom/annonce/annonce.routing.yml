@@ -7,7 +7,7 @@ entity.annonce.canonical:
     _entity_access: 'annonce.view'
 
 entity.annonce.collection:
-  path: '/annonce'
+  path: '/admin/content/annonce'
   defaults:
     _entity_list: 'annonce'
     _title: 'Annonce List'

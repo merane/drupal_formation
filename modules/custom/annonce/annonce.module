@@ -1,0 +1,38 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function annonce_theme($existing, $type, $theme, $path){
+    return array(
+        'annonce' => array(
+            'template' => 'annonce',
+            //'variables' => array('toto' => NULL,),
+        )
+    );
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function annonce_preprocess(&$variables, $hook){
+    //$variables['content']
+}
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ */
+function annonce_theme_suggestions_alter(array &$suggestions, array $variables, $hook){
+    $suggestions[] = $hook . '__' . 'toto';
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+/*function annonce_form_alter(&$form, FormStateInterface $form_state, $form_id){
+    if($form_id == "block_form"){
+        kint($form);
+    }
+}*/
